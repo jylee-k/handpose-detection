@@ -1,0 +1,25 @@
+absl-py==1.2.0
+attrs==22.1.0
+certifi==2022.9.24
+click @ file:///C:/ci/click_1646038595831/work
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+contourpy==1.0.5
+cycler==0.11.0
+Flask @ file:///opt/conda/conda-bld/flask_1648041541647/work
+fonttools==4.37.4
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2 @ file:///opt/conda/conda-bld/jinja2_1647436528585/work
+kiwisolver==1.4.4
+MarkupSafe @ file:///C:/ci/markupsafe_1654508077284/work
+matplotlib==3.6.0
+mediapipe==0.8.11
+numpy @ file:///D:/bld/numpy_1657483989399/work
+opencv-contrib-python==4.6.0.66
+packaging==21.3
+Pillow==9.2.0
+protobuf==3.20.3
+pyparsing==3.0.9
+python-dateutil==2.8.2
+six==1.16.0
+Werkzeug @ file:///opt/conda/conda-bld/werkzeug_1645628268370/work
+wincertstore==0.2

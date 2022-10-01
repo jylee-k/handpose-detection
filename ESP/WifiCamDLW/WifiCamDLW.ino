@@ -13,7 +13,7 @@ setup()
 {
   //LED indicator
   pinMode(33,OUTPUT);
-  
+  digitalWrite(33,1);
   Serial.begin(115200);
   Serial.println();
   delay(2000);
@@ -24,17 +24,20 @@ setup()
 
 
   while (WiFi.status() != WL_CONNECTED) {
-  delay(500);
+  delay(200);
+  digitalWrite(33,0);
   Serial.print(".");
+  delay(200);
+  digitalWrite(33,1);
   }
+  
   if (WiFi.waitForConnectResult() != WL_CONNECTED) {
     Serial.println("WiFi failure");
     delay(5000);
     ESP.restart();
   }
-  digitalWrite(33,1);
   Serial.println("WiFi connected");
-
+  digitalWrite(33,0);
   {
     using namespace esp32cam;
 
@@ -45,6 +48,7 @@ setup()
     cfg.setResolution(initialResolution);
     cfg.setJpeg(80);
 
+    
     bool ok = Camera.begin(cfg);
     if (!ok) {
       Serial.println("camera initialize failure");

@@ -5,6 +5,7 @@ import numpy as np
 import urllib.request
 
 url="http://172.20.10.7/800x600.jpg"
+
 class handDetector():
     def __init__(self, mode = False, maxHands = 1, detectionCon = 0.5, trackCon = 0.5):
         self.mode = mode

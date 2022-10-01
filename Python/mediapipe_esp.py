@@ -4,7 +4,10 @@ import time
 import numpy as np
 import urllib.request
 
-url="http://172.20.10.7/800x600.jpg"
+# Choose between the resolution
+url_large="http://172.20.10.7/1600x1200.jpg"
+url_mid="http://172.20.10.7/800x600.jpg"
+url_small="http://172.20.10.7/400x296.jpg"
 
 class handDetector():
     def __init__(self, mode = False, maxHands = 1, detectionCon = 0.5, trackCon = 0.5):
@@ -14,7 +17,10 @@ class handDetector():
         self.trackCon = trackCon
 
         self.mpHands = mp.solutions.hands
-        self.hands = self.mpHands.Hands(self.mode, self.maxHands, self.detectionCon, self.trackCon)
+        self.hands = self.mpHands.Hands(static_image_mode=self.mode,
+                      max_num_hands=self.maxHands,
+                      min_detection_confidence=self.detectionCon,
+                      min_tracking_confidence=self.trackCon)
         self.mpDraw = mp.solutions.drawing_utils
         
     def findHands(self,img, draw = True):
@@ -44,11 +50,11 @@ class handDetector():
 def main():
     pTime = 0
     cTime = 0
-    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture(0)
     detector = handDetector()
 
     while True:
-        img_resp=urllib.request.urlopen(url)
+        img_resp=urllib.request.urlopen(url_small)
         imgnp=np.array(bytearray(img_resp.read()),dtype=np.uint8)
         img=cv2.imdecode(imgnp,-1)
         #success, img = cap.read()
@@ -64,7 +70,8 @@ def main():
         cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)
 
         cv2.imshow("Image", img)
-        cv2.waitKey(1)
+        if cv2.waitKey(1) == ord('q'):
+            break
 
 
 if __name__ == "__main__":
